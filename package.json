@@ -1,0 +1,45 @@
+{
+  "name": "@analytics-debugger/data-layer-helper-ts",
+  "version": "0.0.1",
+  "description": "TypeScript port of google/data-layer-helper — monitors and processes dataLayer arrays",
+  "keywords": [
+    "data",
+    "datalayer",
+    "javascript",
+    "layer",
+    "message",
+    "queue",
+    "tool",
+    "utility"
+  ],
+  "license": "Apache-2.0",
+  "author": "David Vallejo (https://github.com/thyngster)",
+  "files": [
+    "src",
+    "dist"
+  ],
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "vp build && npx dts-bundle-generator -o dist/index.d.ts src/index.ts",
+    "dev": "vp build --watch",
+    "test": "vp test",
+    "check": "vp check",
+    "prepublishOnly": "vp build && npx dts-bundle-generator -o dist/index.d.ts src/index.ts",
+    "release": "npm version patch && git push --follow-tags && npm publish --access public"
+  },
+  "devDependencies": {
+    "dts-bundle-generator": "^9.5.1",
+    "typescript": "^5.9.3",
+    "vite-plus": "^0.1.14"
+  }
+}
