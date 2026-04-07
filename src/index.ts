@@ -31,19 +31,22 @@ export interface DataLayerHelperOptions {
 
 export default class DataLayerHelper {
   private model_: PlainObject = {};
-  private name_: string;
-  private listener_: DataLayerHelperOptions["listener"] | null;
-  private dataLayer_: unknown[];
+  private name_!: string;
+  private listener_!: DataLayerHelperOptions["listener"] | null;
+  private dataLayer_!: unknown[];
   private unprocessed_: unknown[] = [];
   private executingListener_: boolean = false;
   private processors_: Record<string, ((...args: unknown[]) => void)[]> = {};
-  private originalPush_: (...items: unknown[]) => number;
-  private abstractModelInterface_: {
+  private originalPush_!: (...items: unknown[]) => number;
+  private abstractModelInterface_!: {
     get: (key: string) => unknown;
     set: (key: string, value: unknown) => void;
   };
 
-  constructor(dataLayer: unknown[], options: DataLayerHelperOptions = {}) {
+  constructor(dataLayer: unknown, options: DataLayerHelperOptions = {}) {
+    if (!Array.isArray(dataLayer)) {
+      throw new Error("dataLayer must be an array");
+    }
     const { dataLayerName = "dataLayer", processNow = true, listener } = options;
     this.name_ = dataLayerName;
     this.dataLayer_ = dataLayer;
