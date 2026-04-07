@@ -1,6 +1,6 @@
 {
   "name": "@analytics-debugger/data-layer-helper-ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "TypeScript port of google/data-layer-helper — monitors and processes dataLayer arrays",
   "keywords": [
     "data",
